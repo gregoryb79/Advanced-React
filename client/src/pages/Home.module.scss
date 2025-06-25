@@ -23,6 +23,14 @@
     border-radius: 0.5rem;
 }
 
+.formButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 80%;
+    padding: 0.5rem;
+}
+
 .modalBackdrop {
     position: fixed;
     top: 0;

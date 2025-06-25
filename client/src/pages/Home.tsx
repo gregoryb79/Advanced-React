@@ -77,7 +77,11 @@ function Form({onFormSubmited}: {onFormSubmited: () => void}) {
             <Input id="input3" name="input3" label="input3" type="text" />
             <Input id="input4" name="input4" label="input4" type="text" />
             <Input id="input5" name="input5" label="input5" type="text" />
-            <GeneralButton label="Submit"/>
+            <section className={styles.formButtons}>
+                <GeneralButton label="Submit"/>
+                <GeneralButton label="Cancel" onClick={onFormSubmited}/>
+            </section>
+            
         </form>
     );
 }
