@@ -14,7 +14,7 @@
     background-color: var( --light-gray-bg);
     padding: 1rem;
     width: 80%;   
-    margin: 0 auto; 
+    margin: auto;     
     @include shadowBorder;
     display: flex;
     flex-direction: column;
@@ -38,8 +38,9 @@
 
 .modalContent {
     position: relative;
+    display: flex;
     width: 100%;
-    max-height: 90vh;
+    height: 100%;
     overflow-y: auto;
 }
 
