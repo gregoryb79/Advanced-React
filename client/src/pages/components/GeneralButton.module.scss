@@ -5,10 +5,17 @@
     background: var(--light-gray-bg);
     color: var(--dark-text);
     font-size: var(--font-lg);
-    cursor: pointer;
+    
     &:hover{
         color: var(--white);
         background: var(--primary-blue);
         border-color: var(--primary-blue);
+        cursor: pointer;
+    }
+    &:disabled{
+        background: var(--light-gray-bg);
+        color: var(--dark-text);
+        border-color: var(--gray-border);
+        cursor: default;
     }
 }

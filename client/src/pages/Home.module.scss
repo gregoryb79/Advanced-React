@@ -11,8 +11,11 @@
 }
 
 .formForm{
-    margin-top: auto;
-    margin-bottom: auto;
+    position: absolute;    
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var( --light-gray-bg);
     padding: 1rem;
     width: 80%;
     @include shadowBorder;
@@ -20,4 +23,13 @@
     flex-direction: column;
     gap: 1rem;
     align-items: center;
+}
+
+.homeParagraph{
+    font-size: var(--font-lg);
+    color: var(--dark-text);
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 2rem;
+    width: 100%;
 }

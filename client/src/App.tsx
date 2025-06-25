@@ -18,7 +18,7 @@ function Nav() {
 
   return (
     <nav className={styles.nav}>      
-      <p>Advanced React</p>
+      <h2>Advanced React</h2>
     </nav>
   );
 }
