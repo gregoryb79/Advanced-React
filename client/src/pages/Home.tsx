@@ -19,8 +19,14 @@ export function Home() {
     return (
         <main className={styles.homeMain}>  
             <h2>Home</h2>            
-            <GeneralButton label={"Show Form"} onClick={toggleForm}/>
-            {showForm && <Modal onClose={toggleForm}><Form onFormSubmited={toggleForm}/></Modal>}
+            <GeneralButton label={"Show Form"} onClick={()=>{
+                    toggleForm();
+                    console.log("Show Form button clicked");
+                }}/>
+            {showForm && 
+                <Modal>
+                    <Form onFormSubmited={toggleForm}/>
+                </Modal>}
             <article>
                 <p className={styles.homeParagraph}>
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum possimus voluptate perferendis laudantium doloribus deserunt animi maiores aspernatur unde id accusantium earum quis odio vel rem, inventore cupiditate hic voluptatem, minus distinctio eius maxime incidunt ullam illum. Modi ut quisquam molestiae architecto error voluptates minima. Ipsam illo iure consequatur quis!
@@ -30,28 +36,9 @@ export function Home() {
     );
 }
 
-function Modal({children, onClose}: {children: React.ReactNode, onClose: () => void}) {
-    // Close modal when clicking backdrop
-    function handleBackdropClick(event: React.MouseEvent<HTMLDivElement>) {
-        if (event.target === event.currentTarget) {
-            onClose();
-        }
-    }
-
-    // Close modal on Escape key
-    React.useEffect(() => {
-        function handleEscapeKey(event: KeyboardEvent) {
-            if (event.key === 'Escape') {
-                onClose();
-            }
-        }
-
-        document.addEventListener('keydown', handleEscapeKey);
-        return () => document.removeEventListener('keydown', handleEscapeKey);
-    }, [onClose]);
-
+function Modal({children}: {children: React.ReactNode}) {      
     return (
-        <div className={styles.modalBackdrop} onClick={handleBackdropClick}>
+        <div className={styles.modalBackdrop} >
             <div className={styles.modalContent}>
                 {children}
             </div>
