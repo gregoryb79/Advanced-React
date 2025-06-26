@@ -1,7 +1,7 @@
 @use '../styles/mixins' as *;
 
 .homeMain{
-    width: 100%;
+    width: 80%;
     height: var(--standard-height);    
     @include pageFrame;  
     display: flex;
@@ -41,16 +41,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    // z-index: 1000;
 }
 
-.modalContent {
-    position: relative;
-    display: flex;
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-}
+// .modalContent {
+//     position: relative;
+//     display: flex;
+//     width: 100%;
+//     height: 100%;
+//     overflow-y: auto;
+// }
 
 .homeParagraph{
     font-size: var(--font-lg);
@@ -59,4 +59,9 @@
     padding-right: 2rem;
     padding-bottom: 2rem;
     width: 100%;
+}
+
+.satisfied{
+    color: var(--green-success);
+    font-weight: bold;
 }
