@@ -1,13 +1,15 @@
 
 import styles from "./App.module.scss";
 import { Outlet} from "react-router";
+import { Home } from "./pages/Home";
 
 export function App() {  
 
   return (
      <>      
-      <Nav/>      
-      <Outlet/>
+      {/* <Nav/>      
+      <Outlet/> */}
+      <Home/>
     </>
   );
 }

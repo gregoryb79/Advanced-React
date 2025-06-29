@@ -17,10 +17,27 @@ export function Input({ id, label, ...props }: TextInputProps) {
     const baseId = useId();
     const labelId = `${baseId}_label`;
 
+      // Handler for integer-only inputs
+    const handleIntegerInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        console.log('Key pressed:', e.key);
+        if (['Backspace', 'Delete', 'Tab', 'Escape', 'Enter', 'Home', 'End', 'ArrowLeft', 'ArrowRight'].includes(e.key) ||
+                (e.ctrlKey && ['a', 'c', 'v', 'x'].includes(e.key.toLowerCase()))) {
+            return;
+        }
+        
+        if (!/^[0-9]$/.test(e.key)) {
+            e.preventDefault();
+        }
+    };
+   
+    const inputProps = props.type === 'number' && props.step === '1' 
+        ? { ...props, onKeyDown: handleIntegerInput }
+        : props;
+
     return (
         <div className={styles.formField}>
             <label id={labelId} htmlFor={id}>{label}</label>
-            <input className={styles.inputField} id={id} aria-labelledby={labelId} {...props} />
+            <input className={styles.inputField} id={id} aria-labelledby={labelId} {...inputProps} />
         </div>
     );
 }
