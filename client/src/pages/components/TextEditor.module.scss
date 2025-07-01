@@ -1,0 +1,26 @@
+@use '../../styles/mixins' as *;
+.textInputField{
+    width: 60%;
+    height: 30%;
+    min-height: 30%;
+    min-width: 60%; 
+    background-color: var(--white);
+    // border: 1px solid red;
+    padding: 1rem;
+    @include shadowBorder;
+    overflow-y: auto;
+}
+
+.cursor {
+    display: none;
+    &[aria-expanded="true"]{        
+        display: inline;
+        animation: blink 1s infinite; 
+    }
+    
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}

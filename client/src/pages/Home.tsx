@@ -1,8 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, type Dispatch, type ReactNode } from "react";
 import styles from "./Home.module.scss";
 import { useLoaderData } from "react-router";
 import { Input } from "./components/Input";
 import { GeneralButton } from "./components/GeneralButton";
+import { DropDown } from "./components/DropDown";
+import { Option } from "./components/Option";
+import { TextEditor } from "./components/TextEditor";
 
 
 export function Home() {
@@ -27,6 +30,7 @@ export function Home() {
                 <Modal>
                     <Form onFormSubmited={toggleForm}/>
                 </Modal>}
+            <TextEditor id="textEditor" />
             <article>
                 <p className={styles.homeParagraph}>
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt quasi minus facilis dolorum, repellendus suscipit nobis est expedita iste error id. Distinctio hic illum id perspiciatis perferendis dicta asperiores iste nemo, et illo fugit quidem inventore nihil tempore nulla? Laboriosam id facere facilis numquam! Optio labore esse necessitatibus, provident molestias enim quidem, quo perspiciatis aperiam animi libero minima voluptas similique fugit quam aliquid itaque distinctio. Eaque soluta autem, laboriosam reiciendis id, itaque ullam inventore fugiat sint quibusdam voluptates rerum, consequuntur quas voluptas! Atque voluptatum, mollitia ipsa delectus veniam corporis quasi sed quia sequi natus fuga minima repellat pariatur tempore ea ex accusantium sunt quos. Quos ab optio laudantium itaque laboriosam! Tempora quam aut ut voluptas commodi veritatis consequatur sapiente libero deserunt pariatur at quo asperiores eius cupiditate, vitae reprehenderit quas dolores! Vero nemo expedita, porro voluptatibus adipisci maxime consequuntur quo eos est dolorum non nihil. Non, quibusdam. Non unde quam laborum omnis facilis iure laudantium, vitae magni expedita esse corrupti error nesciunt optio dicta ipsa excepturi sequi maiores, dolor est inventore enim corporis minus quibusdam nisi? Molestiae veritatis, fugit illum, autem fugiat soluta sint minus nostrum consectetur, iure ab provident quibusdam tenetur rem debitis quas odit! Incidunt, necessitatibus similique adipisci consectetur qui aperiam, magnam dolor delectus sapiente obcaecati deserunt illum esse nemo quos quo architecto quod vitae sint quibusdam aut, saepe id vero atque nostrum! Eligendi aperiam doloribus dolorum porro dolore modi impedit explicabo necessitatibus dolorem voluptatem. Molestias, sint adipisci. Magni magnam velit nesciunt ullam iure necessitatibus omnis nulla!Non unde quam laborum omnis facilis iure laudantium, vitae magni expedita esse corrupti error nesciunt optio dicta ipsa excepturi sequi maiores, dolor est inventore enim corporis minus quibusdam nisi? Molestiae veritatis, fugit illum, autem fugiat soluta sint minus nostrum consectetur, iure ab provident quibusdam tenetur rem debitis quas odit! Incidunt, necessitatibus similique adipisci consectetur qui aperiam, magnam dolor delectus sapiente obcaecati deserunt illum esse nemo quos quo architecto quod vitae sint quibusdam aut, saepe id vero atque nostrum! Eligendi aperiam doloribus dolorum porro dolore modi impedit explicabo necessitatibus dolorem voluptatem. Molestias, sint adipisci. Magni magnam velit nesciunt ullam iure necessitatibus omnis nulla!
@@ -36,7 +40,7 @@ export function Home() {
     );
 }
 
-function Modal({children}: {children: React.ReactNode}) {      
+function Modal({children}: {children: ReactNode}) {      
     return (
         <div className={styles.modalBackdrop} >
             {/* <div className={styles.modalContent}> */}
@@ -71,18 +75,18 @@ function Form({onFormSubmited}: {onFormSubmited: () => void}) {
     }
 
     const [remainingPoints,setRemainigPoints] = useState(35);
-    const [stat1, setStat1] = useState(1);
-    const [stat2, setStat2] = useState(1);
-    const [stat3, setStat3] = useState(1);
-    const [stat4, setStat4] = useState(1);
-    const [stat5, setStat5] = useState(1);
+    const [stat1, setStat1] = useState(0);
+    const [stat2, setStat2] = useState(0);
+    const [stat3, setStat3] = useState(0);
+    const [stat4, setStat4] = useState(0);
+    const [stat5, setStat5] = useState(0);
     useEffect(() => {
         const total = stat1 + stat2 + stat3 + stat4 + stat5;        
         console.log(`stat1: ${stat1}, stat2: ${stat2}, stat3: ${stat3}, stat4: ${stat4}, stat5: ${stat5}`);
         setRemainigPoints(35 - total);
     }, [stat1, stat2, stat3, stat4, stat5]);
 
-    function handleStatChange (statSetter: React.Dispatch<React.SetStateAction<number>>, newValue: number, currentStat: number) {
+    function handleStatChange (statSetter: Dispatch<React.SetStateAction<number>>, newValue: number, currentStat: number) {
         const otherStatsTotal = stat1 + stat2 + stat3 + stat4 + stat5 - currentStat;
         const newTotal = otherStatsTotal + newValue;
     
@@ -94,6 +98,7 @@ function Form({onFormSubmited}: {onFormSubmited: () => void}) {
     return (
         <form className={styles.formForm} onSubmit={handleFormSubmit}>
             <h2>Form Form</h2>
+            
             <Input id="Stat 1" name="Stat 1" label="Stat 1" type="number" step="1" min="1" pattern="[0-9]*"
                 onInput={(e) => {
                     const newValue = Number(e.currentTarget.value) || 0;
